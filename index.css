@@ -12,6 +12,10 @@ body {
 	margin-bottom: 30px;
 }
 
+#rule {
+	margin-bottom: 30px;
+}
+
 button, input {
 	margin-bottom: 30px;
 }
@@ -24,18 +28,20 @@ button {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 .num {
 	width: 30px;
 	height: fit-content;
 	font-size: 30px;
+	text-align: center;
 }
 
 table {
 	margin: 0 auto;
+	width: 200px;
 }
 
 th, td {

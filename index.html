@@ -11,22 +11,28 @@
 	<div>
 		<div id="title">BaseBall Game</div>
 		<div id="game">
-			<div class="start">
-				<button id="startbtn">Start</button>
+			<div id="rule">
+				<p><게임규칙></p>
+				<div id="rule1">1. 첫 번째 자리는 0이 될 수 없다.</div>
+				<div id="rule2">2. 각 자리 숫자는 중복되지 않는다.</div>
 			</div>
-			<div>
-				<input type="number" class="num 1" id="1" min="0" max="9" maxlength="1" autocomplete="off">
-				<input type="number" class="num 2" id="2" min="0" max="9" maxlength="1" autocomplete="off">
-				<input type="number" class="num 3" id="3" min="0" max="9" maxlength="1" autocomplete="off">
+			<div class="start">
+				<button id="startbtn" onclick="onStart()">Start</button>
+			</div>
+			<div id="user_num">
+				<input type="number" class="num 1" id="num1" onchange="onPress()" autocomplete="off">
+				<input type="number" class="num 2" id="num2" onchange="onPress()" autocomplete="off">
+				<input type="number" class="num 3" id="num3" onchange="onPress()" autocomplete="off">
 			</div>
 			<div class="check">
-				<button id="checkbtn">Enter</button>
+				<button id="enterbtn" onclick="onEnter()">Enter</button>
 			</div>
 		</div>
 		<div class="result">
 			<table>
 				<thead>
 					<tr>
+						<th>순번</th>
 						<th>숫자</th>
 						<th>결과</th>
 					</tr>
