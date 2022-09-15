@@ -5,6 +5,8 @@ let setNum = [];
 let num1 = document.getElementById("num1");
 let num2 = document.getElementById("num2");
 let num3 = document.getElementById("num3");
+
+// 세 자리 제한
 let userNum = ['', '', ''];
 
 const startbtn = document.getElementById("startbtn");
@@ -77,6 +79,7 @@ const onEnter = () => {
 			if (i === j && setNum[i] === userNum[j]) {
 				strike += 1;
 				break;
+				// break : 반복문에서 탈출하는 코드
 			}
 			else if (i !== j && setNum[i] === userNum[j]) {
 				ball += 1;
@@ -88,7 +91,7 @@ const onEnter = () => {
 	console.log('strike : ', strike);
 	console.log('ball', ball);
 
-	// 결과 출력
+	// 정답
 	if (strike === 3) {
 		alert('정답입니다.');
 
@@ -101,6 +104,7 @@ const onEnter = () => {
 		html = ``;
 		tableBody.innerHTML = html;
 	}
+	// 오답
 	else {
 		id++;
 		html += `
