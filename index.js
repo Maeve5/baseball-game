@@ -40,9 +40,10 @@ const onStart = () => {
 			}
 		}
 		console.log('setNum : ', setNum);
-		// 게임 상태 변경
+
 		startbtn.innerText = 'Go!';
-		nums[0].focus();
+		startbtn.disabled = true;
+		// nums[0].focus();
 	}
 }
 
@@ -117,6 +118,7 @@ const onEnter = () => {
 		alert('정답입니다.\n시도횟수 : ' + id + '번');
 
 		startbtn.innerText = 'Start';
+		startbtn.disabled = false;
 		startbtn.focus();
 		setNum = [];
 		id = 0;
