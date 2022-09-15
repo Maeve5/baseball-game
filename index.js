@@ -16,7 +16,6 @@ const enterbtn = document.getElementById('enterbtn');
 // 게임 시작
 const onStart = () => {
 	if (startbtn.innerText === 'Start') {
-		console.log(nums);
 		// 초기화
 		let html = ``;
 		document.querySelector('table tbody').innerHTML = html;
@@ -72,6 +71,7 @@ const handleMaxLength = (e) => {
 // enter키 작동
 const onKeyUp = (e) => {
 	if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+		console.log('target >> ', e.target);
 		onEnter();
 	}
 }
@@ -89,6 +89,14 @@ const onEnter = () => {
 	let tableBody = document.querySelector('table tbody');
 
 	id += 1;
+
+	// 답 확인 조건
+	let flag = true;
+	let set = new Set(userNum);
+
+	document.getElementById('rule1').style.color = 'black';
+	document.getElementById('rule2').style.color = 'black';
+
 	// 값 비교
 	setNum.forEach((setnum, setIdx) => {
 		userNum.forEach((usernum, userIdx) => {
@@ -109,6 +117,7 @@ const onEnter = () => {
 		alert('정답입니다.\n시도횟수 : ' + id + '번');
 
 		startbtn.innerText = 'Start';
+		startbtn.focus();
 		setNum = [];
 		id = 0;
 		userNum = ['', '', ''];
@@ -116,31 +125,24 @@ const onEnter = () => {
 	// 오답
 	else {
 		html += `
-			<tr>
-				<td>${id}</td>
-				<td>${num}</td>
-				<td>${strike === 0 && ball === 0
+		<tr>
+			<td>${id}</td>
+			<td>${num}</td>
+			<td>${strike === 0 && ball === 0
 				? `OUT`
 				: `${ball}B ${strike}S`}
-				</td>
-			</tr>
-		`
+			</td>
+		</tr>
+	`
 		tableBody.innerHTML += html;
 	}
 
-	// 답 확인 조건
-	let flag = true;
-	let set = new Set(userNum);
-
-	document.getElementById('rule1').style.color = 'black';
-	document.getElementById('rule2').style.color = 'black';
 
 	// 빈칸 있는 경우
 	if (!nums[0].value || !nums[1].value || !nums[2].value) {
 		alert('숫자를 입력하세요.');
 		flag = false;
 	}
-	
 	// 규칙 1번 위반
 	if (nums[0].value === '0') {
 		document.getElementById('rule1').style.color = 'red';
@@ -152,9 +154,13 @@ const onEnter = () => {
 		flag = false;
 	}
 
+	else {
+		
+	}
+
 	return flag;
 
-	// 빈칸 있는 경우
+	// // 빈칸 있는 경우
 	// Array.from(nums).forEach((num) => {
 	// 	if (!num.value) {
 	// 		alert('숫자를 입력하세요.');
