@@ -18,20 +18,37 @@ body {
 
 button, input {
 	margin-bottom: 30px;
+	border: 2px solid rgba(255, 0, 0, 0.697);
 }
 
 button {
     cursor: pointer;
 	width: 50px;
 	height: 50px;
+	font-weight: 600;
 	border-radius: 50%;
-	background-color: rgba(163, 135, 248, 0.525);
-	border: 1px solid rgba(95, 95, 95, 0.552);
-	/* box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08); */
+	background-color: white;
 }
 
-button:active {
+button:hover,
+button:focus,
+input:focus {
+	outline: 0;
+	border-color: #d3f261;
+}
+
+button:active:enabled {
     transform: scale(0.98);
+}
+
+button:disabled {
+	color: rgb(27, 117, 57);
+	cursor: default;
+	border-color: rgb(189, 189, 189);
+}
+
+button:hover:disabled {
+	border: 2px solid rgba(255, 0, 0, 0.697);
 }
 
 input::-webkit-outer-spin-button,
@@ -54,5 +71,9 @@ table {
 
 th, td {
 	padding: 5px;
-	border: solid 1px #aaa;
+	border: solid 1px rgba(95, 95, 95, 0.552);
+}
+
+th {
+	background-color: #d3f261;
 }

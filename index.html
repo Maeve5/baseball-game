@@ -21,12 +21,12 @@
 				<div id="rule2">2. 각 숫자는 중복되지 않는다.</div>
 			</div>
 			<div class="start">
-				<button id="startbtn" onclick="onStart()">Start</button>
+				<button id="startbtn" onclick="onStart()" autofocus>Start</button>
 			</div>
 			<div id="userNum">
-				<input type="number" class="num" id="num1" autocomplete="off" onchange="onPress()" oninput="handleMaxLength(this)" maxlength="1">
-				<input type="number" class="num" id="num2" autocomplete="off" onchange="onPress()" oninput="handleMaxLength(this)" maxlength="1">
-				<input type="number" class="num" id="num3" autocomplete="off" onchange="onPress()" oninput="handleMaxLength(this)" maxlength="1">
+				<input type="number" class="num" id="num1" onchange="onPress()" oninput="handleMaxLength(this)" maxlength="1" autocomplete="off">
+				<input type="number" class="num" id="num2" onchange="onPress()" oninput="handleMaxLength(this)" maxlength="1" autocomplete="off">
+				<input type="number" class="num" id="num3" onchange="onPress()" oninput="handleMaxLength(this)" maxlength="1" autocomplete="off">
 			</div>
 			<div class="check">
 				<button id="enterbtn" onclick="onEnter()">Enter</button>

@@ -1,14 +1,17 @@
 // 랜덤 숫자
 let setNum = [];
 
-// input 가져오기
+// player 숫자
+let userNum = ['', '', ''];
+
+// 입력한 숫자 가져오기
 let nums = document.getElementsByClassName('num');
 
 // 시도 횟수
-let id = 0;
+let count = 0;
 
-// player 숫자
-let userNum = ['', '', ''];
+let html = ``;
+let tableBody = document.querySelector('table tbody');
 
 const startbtn = document.getElementById('startbtn');
 const enterbtn = document.getElementById('enterbtn');
@@ -17,8 +20,9 @@ const enterbtn = document.getElementById('enterbtn');
 const onStart = () => {
 	if (startbtn.innerText === 'Start') {
 		// 초기화
-		let html = ``;
-		document.querySelector('table tbody').innerHTML = html;
+		count = 0;
+		html = ``;
+		tableBody.innerHTML = html;
 		Array.from(nums).forEach((num) => {
 			num.value = null;
 		});
@@ -41,6 +45,7 @@ const onStart = () => {
 		}
 		console.log('setNum : ', setNum);
 
+		// 버튼 비활성화
 		startbtn.innerText = 'Go!';
 		startbtn.disabled = true;
 		// nums[0].focus();
@@ -82,19 +87,15 @@ Array.from(nums).forEach((num) => {
 
 // 답 확인
 const onEnter = () => {
-
+	
+	// 초기화
 	let ball = 0;
 	let strike = 0;
 	let num = userNum.join('');
-	let html = ``;
-	let tableBody = document.querySelector('table tbody');
-
-	id += 1;
-
-	// 답 확인 조건
 	let flag = true;
-	let set = new Set(userNum);
-
+	
+	html = ``;
+	count += 1;
 	document.getElementById('rule1').style.color = 'black';
 	document.getElementById('rule2').style.color = 'black';
 
@@ -110,36 +111,6 @@ const onEnter = () => {
 		})
 	})
 
-	// console.log('ball', ball);
-	// console.log('strike : ', strike);
-
-	// 정답
-	if (strike === 3) {
-		alert('정답입니다.\n시도횟수 : ' + id + '번');
-
-		startbtn.innerText = 'Start';
-		startbtn.disabled = false;
-		startbtn.focus();
-		setNum = [];
-		id = 0;
-		userNum = ['', '', ''];
-	}
-	// 오답
-	else {
-		html += `
-		<tr>
-			<td>${id}</td>
-			<td>${num}</td>
-			<td>${strike === 0 && ball === 0
-				? `OUT`
-				: `${ball}B ${strike}S`}
-			</td>
-		</tr>
-	`
-		tableBody.innerHTML += html;
-	}
-
-
 	// 빈칸 있는 경우
 	if (!nums[0].value || !nums[1].value || !nums[2].value) {
 		alert('숫자를 입력하세요.');
@@ -151,32 +122,33 @@ const onEnter = () => {
 		flag = false;
 	}
 	// 규칙 2번 위반
-	if (nums.length !== set.size) {
+	if (nums[0].value === nums[1].value || nums[1].value === nums[2].value || nums[2].value === nums[0].value) {
 		document.getElementById('rule2').style.color = 'red';
 		flag = false;
 	}
-
-	else {
-		
+	// 정답
+	if (strike === 3) {
+		alert('정답입니다.\n시도횟수 : ' + count + '번');
+		// 재시작 준비
+		startbtn.innerText = 'Start';
+		startbtn.disabled = false;
+		startbtn.focus();
+		setNum = [];
+		userNum = ['', '', ''];
 	}
 
-	return flag;
+	// 결과 출력
+	html += `
+		<tr ${strike === 3 ? `style="color: red;"` : `style="color: black;"`}>
+			<td>${count}</td>
+			<td>${num}</td>
+			<td>${strike === 3 ? `홈런`
+				: strike === 0 && ball === 0 ? `OUT`
+				: `${ball}B ${strike}S`}
+			</td>
+		</tr>
+	`
+	tableBody.innerHTML += html;
 
-	// // 빈칸 있는 경우
-	// Array.from(nums).forEach((num) => {
-	// 	if (!num.value) {
-	// 		alert('숫자를 입력하세요.');
-	// 		return flag = false;
-	// 	}
-	// })
-	// // 규칙 1번 위반
-	// if (Number(nums[0].value) === 0) {
-	// 	document.getElementById('rule1').style.color = 'red';
-	// 	flag = false;
-	// }
-	// // 규칙 2번 위반
-	// if (nums[0].value === nums[1].value || nums[1].value === nums[2].value || nums[2].value === nums[0].value) {
-	// 	document.getElementById('rule2').style.color = 'red';
-	// 	flag = false;
-	// }
+	return flag;
 }
