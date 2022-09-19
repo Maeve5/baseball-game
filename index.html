@@ -24,9 +24,9 @@
 				<button id="startbtn" onclick="onStart()" autofocus>Start</button>
 			</div>
 			<div id="userNum">
-				<input type="number" class="num" id="num1" onchange="onPress()" oninput="handleMaxLength(this)" maxlength="1" autocomplete="off">
-				<input type="number" class="num" id="num2" onchange="onPress()" oninput="handleMaxLength(this)" maxlength="1" autocomplete="off">
-				<input type="number" class="num" id="num3" onchange="onPress()" oninput="handleMaxLength(this)" maxlength="1" autocomplete="off">
+				<input type="tel" class="num" id="num1" onkeyup="onKeyUp(event)" maxlength="1" autocomplete="off">
+				<input type="tel" class="num" id="num2" onkeyup="onKeyUp(event)" maxlength="1" autocomplete="off">
+				<input type="tel" class="num" id="num3" onkeyup="onKeyUp(event)" maxlength="1" autocomplete="off">
 			</div>
 			<div class="check">
 				<button id="enterbtn" onclick="onEnter()">Enter</button>
